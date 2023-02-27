@@ -1,0 +1,11 @@
+{"cpf":123,"genero":"FEMININO","nome":"Fulano 1","data_nascimento":"1931-05-24","nome_mae":"Mãe 1","nome_pai":"Pai 1","nome_social":"Fulano 1","filhos":false,"obito":false,"logradouro":"GUILHERME DE MELO","numero_logradouro":"232","telefone":"1111"}
+{"cpf":345,"genero":"FEMININO","nome":"Fulano 2","data_nascimento":"1955-09-23","nome_mae":"Mãe 2","nome_pai":"Pai 2","nome_social":"Fulano 2","filhos":false,"obito":false,"telefone":"1111"}
+{"cpf":567,"genero":"FEMININO","nome":"Fulano 3","data_nascimento":"1967-09-28","nome_mae":"Mãe 3","nome_pai":"Pai 3","nome_social":"Fulano 3","filhos":false,"obito":false,"telefone":"11111"}
+{"cpf":789,"genero":"FEMININO","nome":"Fulano 4","data_nascimento":"1965-05-01","nome_mae":"Mãe 4","nome_pai":"Pai 4","nome_social":"Fulano 4","filhos":false,"obito":false,"telefone":"11111"}
+{"cpf":901,"genero":"FEMININO","nome":"Fulano 5","data_nascimento":"1919-04-09","nome_mae":"Mãe 5","nome_pai":"Pai 5","nome_social":"Fulano 5","filhos":false,"obito":false,"logradouro":"TALES","numero_logradouro":"11","telefone":"111"}
+{"cpf":321,"genero":"FEMININO","nome":"Fulano 6","data_nascimento":"2014-01-10","nome_mae":"Mãe 6","nome_pai":"Pai 6","nome_social":"Fulano 6","filhos":false,"obito":false}
+{"cpf":322,"genero":"FEMININO","nome":"Fulano 7","data_nascimento":"1950-02-20","nome_mae":"Mãe 7","nome_pai":"Pai 7","nome_social":"Fulano 7","filhos":false,"obito":false,"logradouro":"MAJOR FREIRE","numero_logradouro":"111","complento_logradouro":"APT 111","telefone":"2222222"}
+{"cpf":332,"genero":"MASCULINO","nome":"Fulano 8","data_nascimento":"1947-07-17","nome_mae":"Mãe 8","nome_pai":"Pai 8","nome_social":"Fulano 8","filhos":false,"obito":false,"logradouro":"PORTUGAL","numero_logradouro":"341","telefone":"111111111"}
+{"cpf":222,"genero":"MASCULINO","nome":"Fulano 9","data_nascimento":"1967-07-17","nome_mae":"Mãe 9","nome_pai":"Pai 9","nome_social":"Fulano 9","filhos":true,"obito":false,"telefone":"1111111"}
+{"cpf":444,"genero":"MASCULINO","nome":"Fulano 10","data_nascimento":"1998-08-21","nome_mae":"Mãe 10","nome_pai":"Pai 10","nome_social":"Fulano 10","filhos":false,"obito":false}
+{"cpf":111,"genero":"FEMININO","nome":"Fulano 11","data_nascimento":"1986-03-08","nome_mae":"Mãe 11","nome_pai":"Pai 11","nome_social":"Fulano 11","filhos":false,"obito":false}
