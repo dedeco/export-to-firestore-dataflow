@@ -56,8 +56,9 @@ class FirestoreUpdateDoFn(beam.DoFn):
 
     def _flush_updates(self):
         for item in self.element_batch:
-            doc = self.some_ref.document()
-            doc.set(
+            doc_ref = self.some_ref.document()
+            self.batch.set(
+                doc_ref,
                 item
             )
         self.batch.commit()

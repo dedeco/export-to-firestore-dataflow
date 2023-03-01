@@ -14,7 +14,7 @@ pip install -r requirements.txt
 ```bash
 python -m export_firestore_pipeline \
 --region southamerica-east1 \
---runner DataflowRunner \
+--runner DirectRunner \
 --project andresousa-dataform-dev \
 --temp_location gs://andresousa-dataform-devcs-0/tmp/ \
 --requirements_file=requirements.txt
