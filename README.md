@@ -12,21 +12,11 @@ pip install -r requirements.txt
 
 4. Submit the command (to run locally) (Optional):
 ```bash
-python -m export_firestore_pipeline \
---region southamerica-east1 \
---runner DirectRunner \
---project andresousa-dataform-dev \
---temp_location gs://andresousa-dataform-devcs-0/tmp/ \
---requirements_file=requirements.txt
+python -m export_firestore_pipeline --input "gs://andresousa-dataform-devcs-0/2023/02/dump-bq-users*.json" --project "andresousa-dataform-dev" --project_firestore_host "andresousa-dataform-dev" --region southamerica-east1 --temp_location "gs://andresousa-dataform-devcs-0/tmp/" --requirements_file "requirements.txt"
 ```
 5. Submit the command to RUN IN DATAFLOW:
 ```bash
-python -m export_firestore_pipeline \
-    --region southamerica-east1 \
-    --runner DataflowRunner \
-    --project andresousa-dataform-dev \
-    --temp_location gs://andresousa-dataform-devcs-0/tmp/ \
-    --requirements_file=requirements.txt
+python -m export_firestore_pipeline --input "gs://andresousa-dataform-devcs-0/2023/02/dump-bq-users*.json" --runner "DataflowRunner" --project "andresousa-dataform-dev" --project_firestore_host "andresousa-dataform-dev" --region southamerica-east1 --temp_location "gs://andresousa-dataform-devcs-0/tmp/" --requirements_file "requirements.txt"
 ```
 
 ## Disclaimer

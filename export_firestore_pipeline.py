@@ -5,7 +5,6 @@ from typing import List
 
 import apache_beam as beam
 from apache_beam.options.pipeline_options import SetupOptions, PipelineOptions
-from google.cloud import firestore
 
 
 class ReadJson(beam.PTransform):
@@ -36,43 +35,57 @@ class Transformation:
 
 class FirestoreUpdateDoFn(beam.DoFn):
 
-    def __init__(self, max_batch_size=500):
-        self.element_batch = []
-        self.max_batch_size = max_batch_size
+    def __init__(self, project_id):
+        self.db = None
+        self.project_id = project_id
 
     def start_bundle(self):
-        self.db = firestore.Client(project='andresousa-dataform-dev')
-        self.batch = self.db.batch()
-        self.some_ref = self.db.collection(u'Users')
+        from google.cloud import firestore
+        self.db = firestore.Client(self.project_id)
 
     def process(self, row):
-        self.element_batch.append(row)
-        if len(self.element_batch) >= self.max_batch_size:
-            self._flush_updates()
+        doc_ref = self.db.collection(u'Users') \
+            .document(str(row.get('us_cpf')))
+        doc_ref.set(
+            row
+        )
 
     def finish_bundle(self):
-        self._flush_updates()
         self.db.close()
 
-    def _flush_updates(self):
-        for item in self.element_batch:
-            doc_ref = self.some_ref.document()
-            self.batch.set(
-                doc_ref,
-                item
-            )
-        self.batch.commit()
 
-
-def run(argv=None, save_main_session=True):
-    """Main entry point; defines and runs the export firestore pipeline."""
+def build_argument_parser(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--input',
         dest='input',
-        default='gs://andresousa-dataform-devcs-0/2023/02/dump-bq-users*.json',
-        help='Input file partner to process.')
+        required=True,
+        help='Input file partner to process.'
+    )
+    parser.add_argument(
+        '--project_firestore_host',
+        dest='project_firestore_host',
+        required=True,
+        help='Project id that will save firestore data'
+    )
+    parser.add_argument(
+        '--project',
+        dest='project',
+        required=True,
+        help='Project ID.'
+    )
     known_args, pipeline_args = parser.parse_known_args(argv)
+    logging.info('pipeline_args {}'.format(pipeline_args))
+    logging.info('known_args {}'.format(known_args))
+    pipeline_args.extend([
+        '--project=' + known_args.project
+    ])
+    return known_args, pipeline_args
+
+
+def run(argv=None, save_main_session=True):
+    """Main entry point; defines and runs the export firestore pipeline."""
+    known_args, pipeline_args = build_argument_parser(argv)
 
     options = PipelineOptions(pipeline_args)
     options.view_as(SetupOptions).save_main_session = save_main_session
@@ -85,7 +98,9 @@ def run(argv=None, save_main_session=True):
                 | "read" >> ReadJson(known_args.input)
                 | "remap to a new json" >> beam.Map(lambda json_as_dict: transform.remap(json_as_dict))
                 | "write in firestore" >> beam.io.Write(
-            beam.ParDo(FirestoreUpdateDoFn())
+            beam.ParDo(
+                FirestoreUpdateDoFn(known_args.project_firestore_host)
+            )
         )
         )
     result = p.run()
