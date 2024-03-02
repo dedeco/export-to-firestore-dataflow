@@ -1,6 +1,4 @@
-Absolutely! Here's the revised README.md formatted in Markdown for a clean and easily readable presentation:
-
-**export_firestore_pipeline**
+# Export Firestore Pipeline
 
 ## Goal
 
